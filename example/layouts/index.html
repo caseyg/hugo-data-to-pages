@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/_pagefind/pagefind-ui.css" rel="stylesheet">
+    <script src="/_pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <style type="text/css">
+        .pagefind-ui__drawer {
+            max-height: 100vh;
+        }
+        .pagefind-ui__filter-panel, .pagefind-ui__results-area {
+            max-height: 100vh;
+            overflow: auto;
+        }
+    </style>
+
+    <title>Document</title>
+</head>
+<body>
+    <div id="search"></div>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            new PagefindUI({ 
+                element: "#search",
+                showEmptyFilters: false
+             });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+<!-- <ol>
+    {{ range .Pages }}
+        <li>
+            <a href="{{.Permalink}}">{{.Params.ts}}</a>
+        </li>
+    {{ end }}
+</ol> -->
