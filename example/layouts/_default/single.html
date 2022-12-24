@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ .Params.user_profile.real_name }}</title>
+</head>
+<body>
+    <main data-pagefind-body data-pagefind-meta="reply_count:{{ .Params.reply_count | default "0" }}" data-pagefind-sort="reply_count:{{ .Params.reply_count  | default "0" }}">
+        {{ with .Params.user_profile }}
+            <img src="{{ .image_72 }}" alt="{{ .real_name }}" data-pagefind-meta="image[src]">
+            <p data-pagefind-filter="user">{{ .real_name }}</p>
+        {{ end }}
+        <p>{{ .Params.text }}</p>
+    </main>
+    
+    <p data-pagefind-meta="datetime">{{ replace .Params.ts "." "" | int | time.Format ":date_long" }}</p>
+    <!-- <div class="metadata">
+        {{ with .Params.subtype }}<p>Subtype: <span class="subtype">{{ . }}</span></p>{{ end }}
+    </div> -->
+</body>
+</html>
