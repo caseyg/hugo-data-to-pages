@@ -1,7 +1,9 @@
-
-# Hugo default output directory
-/example/public
-# Hugo generated resources directory
-/example/resources
-
 node_modules/*
+
+/example/public
+/example/resources
+/example/content
+/example/static
+/example/data
+.hugo_build.lock
+.DS_Store
