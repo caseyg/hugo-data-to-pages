@@ -1,0 +1,160 @@
+{{ define "main" }}
+<div class="container mt-5">
+    
+    <div class="p-5 mb-4 bg-primary text-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">🧵 💬 📦 🧠 ✨ <br> Search the ReOps Community's <br>collective knowledge</h1>
+            <p class="col-md-8 fs-4">Become a <span class="rainbow">ReOps Patreon Supporter</span> and gain instant access to the official archive of our community's discussions — with over 70,000+ messages since 2018 ⚡️ <em>...and your donations will help sustain the awesomeness of our community projects.</em></p>
+            <div class="d-grid gap-2 d-md-block text-center my-5">
+                <a class="btn btn-light btn-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon-heart-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8.49 10.92C19.412 3.382 11.28-2.387 8 .986 4.719-2.387-3.413 3.382 7.51 10.92l-.234.468a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.235-.468ZM6.726 1.269c-1.167-.61-2.8-.142-3.454 1.135-.237.463-.36 1.08-.202 1.85.055.27.467.197.527-.071.285-1.256 1.177-2.462 2.989-2.528.234-.008.348-.278.14-.386Z"/>
+                    </svg>
+                    Step 1. Join ReOps Patreon ($2/mo+)
+                </a>
+                <span>&rarr;</span>
+                <a class="btn btn-outline-light btn-lg" href="https://test.stytch.com/v1/public/oauth/slack/start?public_token=public-token-test-48da465d-04bc-45b2-b9c2-d061e7fae06c">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-slack" viewBox="0 0 16 16">
+                        <path d="M3.362 10.11c0 .926-.756 1.681-1.681 1.681S0 11.036 0 10.111C0 9.186.756 8.43 1.68 8.43h1.682v1.68zm.846 0c0-.924.756-1.68 1.681-1.68s1.681.756 1.681 1.68v4.21c0 .924-.756 1.68-1.68 1.68a1.685 1.685 0 0 1-1.682-1.68v-4.21zM5.89 3.362c-.926 0-1.682-.756-1.682-1.681S4.964 0 5.89 0s1.68.756 1.68 1.68v1.682H5.89zm0 .846c.924 0 1.68.756 1.68 1.681S6.814 7.57 5.89 7.57H1.68C.757 7.57 0 6.814 0 5.89c0-.926.756-1.682 1.68-1.682h4.21zm6.749 1.682c0-.926.755-1.682 1.68-1.682.925 0 1.681.756 1.681 1.681s-.756 1.681-1.68 1.681h-1.681V5.89zm-.848 0c0 .924-.755 1.68-1.68 1.68A1.685 1.685 0 0 1 8.43 5.89V1.68C8.43.757 9.186 0 10.11 0c.926 0 1.681.756 1.681 1.68v4.21zm-1.681 6.748c.926 0 1.682.756 1.682 1.681S11.036 16 10.11 16s-1.681-.756-1.681-1.68v-1.682h1.68zm0-.847c-.924 0-1.68-.755-1.68-1.68 0-.925.756-1.681 1.68-1.681h4.21c.924 0 1.68.756 1.68 1.68 0 .926-.756 1.681-1.68 1.681h-4.21z"/>
+                    </svg>
+                    Step 2. Sign in with Slack
+                </a>
+              </div>
+              <div class="text-center">
+                  <a href="" class="btn btn btn-text text-light">(*Money an issue? We've got you. <u>Apply here</u> for free student and jobseeker access.)</a>
+              </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Top 10 Conversations</h2>
+
+
+    <ul class="list-inline fs-2 lh-base lh-lg text-center">
+        {{ range first 10 .Site.Taxonomies.channel.ByCount }}  
+            <li 
+            class="list-inline-item mx-2"
+            data-bs-toggle="popover"
+            data-bs-trigger="hover"
+            data-bs-placement="top"
+            data-bs-title="{{ .Count }} Messages" 
+            data-bs-content="{{ range where $.Site.Data.channels "name" "eq" .Page.Title }}{{ .purpose.value | markdownify | emojify }}{{ end }}">
+                <a href="{{ .Page.RelPermalink }}">
+                    <span class="badge rounded-pill text-bg-primary fw-light">
+                        #{{ .Page.Title }}
+                    </span>
+                </a>
+            </li>
+        {{ end }}
+    </ul>
+
+    <div id="search"></div>
+
+
+</div>
+
+<link href="/_pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/_pagefind/pagefind-ui.js" type="text/javascript"></script>
+<style type="text/css">
+    .pagefind-ui__drawer {
+        max-height: 100vh;
+    }
+    .pagefind-ui__filter-panel, .pagefind-ui__results-area {
+        max-height: 100vh;
+        overflow: auto;
+    }
+
+
+    .rainbow {
+        background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+        background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+        color:transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: animatedBackground 5s linear infinite;
+          -moz-animation: animatedBackground 5s linear infinite;
+          -webkit-animation: animatedBackground 5s linear infinite;
+          -ms-animation: animatedBackground 5s linear infinite;
+          -o-animation: animatedBackground 5s linear infinite;
+      }
+      
+      .sparkle {
+          font-family:impact;
+           -webkit-text-fill-color: transparent;
+           background: -webkit-linear-gradient(transparent, transparent),
+                       url(http://www.myspacehippo.com/files/glitterbacks/bg345.gif) repeat;
+           background: -o-linear-gradient(transparent, transparent);
+           -webkit-background-clip: text;
+      }
+      
+      .scrolling {
+        color : blue;
+          animation: scrolling 3s linear infinite;
+          -moz-animation: scrolling 3s linear infinite;
+          -webkit-animation: scrolling 3s linear infinite;
+          -ms-animation: scrolling 3s linear infinite;
+          -o-animation: scrolling 3s linear infinite;
+      }
+      
+      .scrolling-container {
+          overflow : hidden;
+          height: 55px;
+      }
+      
+      /* Animation rainbow background */
+      @keyframes animatedBackground {
+          0% { background-position: 0; }
+          100% { background-position: 500px; }
+      }
+      @-moz-keyframes animatedBackground {
+          0% { background-position: 0; }
+          100% { background-position: 500px; }
+      }
+      @-webkit-keyframes animatedBackground {
+          0% { background-position: 0; }
+          100% { background-position: 500px; }
+      }
+      @-ms-keyframes animatedBackground {
+          0% { background-position: 0; }
+          100% { background-position: 500px; }
+      }
+      @-o-keyframes animatedBackground {
+          0% { background-position: 0; }
+          100% { background-position: 500px; }
+      }
+      
+      /* Y scroll animation */
+      @keyframes scrolling {
+          0% {transform: translateY(-150%)}
+          100% {transform: translateY(100%)}
+      }
+      @-moz-keyframes scrolling {
+          0% {transform: translateY(-150%)}
+          100% {transform: translateY(100%)}
+      }
+      @-webkit-keyframes scrolling {
+          0% {transform: translateY(-150%)}
+          100% {transform: translateY(100%)}
+      }
+      @-ms-keyframes scrolling {
+          0% {transform: translateY(-150%)}
+          100% {transform: translateY(100%)}
+      }
+      @-o-keyframes scrolling {
+          0% {transform: translateY(-150%)}
+          100% {transform: translateY(100%)}
+      }     
+</style>
+
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ 
+            element: "#search",
+            showEmptyFilters: false
+        });
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(
+            popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl),
+            )
+    });
+</script>
+{{end}}

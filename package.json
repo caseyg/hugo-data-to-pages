@@ -9,14 +9,29 @@
   "dependencies": {
     "fs-extra": "^8.1.0",
     "js-yaml": "^3.14.1",
+    "node-dir": "^0.1.17",
+    "pagefind": "^0.10.6",
     "prompts": "^2.4.1",
+    "slack-markdown": "^0.2.0",
     "toml": "^3.0.0",
     "yargs": "^13.3.2"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "parse": "node parse_folders.js",
+    "dev:hugo": "hugo -c \"dev_content\" -d \"dev_public\"",
+    "clean": "rm -rf dev_public",
+    "dev:pagefind": "npx pagefind --source \"dev_public\"",
+    "build:pagefind": "npx pagefind --source \"public\"",
+    "build:hugo": "hugo",
+    "build": "npm run build:hugo && npm run build:pagefind",
+    "dev:netlify": "netlify dev -c \"hugo serve --renderToDisk -w -c dev_content -d dev_public\"",
+    "build:netlify": "netlify dev",
+    "dev": "npm run clean && npm run dev:hugo && npm run dev:pagefind && npm run dev:netlify",
+    "start": "npm run build && npm run build:netlify"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "netlify-cli": "^12.5.0"
+  }
 }

@@ -1,0 +1,63 @@
+# example netlify.toml
+[build]
+  framework = "#custom"
+  targetPort = 1313
+  publish = "dev_public"
+  
+## (optional) Settings for Netlify Dev
+## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection
+[dev]
+  framework = "#custom"
+  targetPort = 1313
+  publish = "dev_public"
+  command = "hugo serve --renderToDisk -w -c dev_content -d dev_public"
+
+
+  ## more info on configuring this file: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+## Uncomment to use this redirect for Single Page Applications like create-react-app.
+## Not needed for static site generators.
+
+[[edge_functions]]
+  path = "/"
+  function = "auth"
+
+[[edge_functions]]
+  path = "/m/*"
+  function = "auth"
+
+[[edge_functions]]
+  path = "/c/*"
+  function = "auth"
+
+[[edge_functions]]
+  path = "/login"
+  function = "auth"
+
+[[edge_functions]]
+  path = "/signup"
+  function = "auth"
+
+[[redirects]]
+  from = "/*"
+  to = "/:splat"
+  status = 200
+  conditions = {Cookie = ["token"]}
+
+[[redirects]]
+  from = "/m/*"
+  to = "/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/c/*"
+  to = "/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/_pagefind/*"
+  to = "/"
+  status = 200
+  force = true

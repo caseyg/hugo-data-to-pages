@@ -1,9 +1,9 @@
-node_modules/*
-
-/example/public
-/example/resources
-/example/content
-/example/static
-/example/data
+node_modules
+public
+dev_public
+content
+dev_content
+data
 .hugo_build.lock
 .DS_Store
+.netlify

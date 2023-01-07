@@ -1,4 +1,38 @@
-# Hugo Data to Pages
+1. generate content from slack archive
+2. build hugo
+3. build pagesearch index
+4. setup auth with stytch
+5. run netlify
+
+## Todo
+
+- Parse Slack formatting
+    - @channel/@here
+    - <links|links>
+    - <@usernames>
+    - #channels
+    - [x] emoji
+    - weird characters
+    - skip avatar for many posts in a row
+- Show threads in context
+- [x] Fix ts dates
+- [x] Sort messages in order of appearance
+- [x] Setup real slack auth
+- Setup analytics w/ user attribution
+- Shareable single pages
+- Subdomain on reops community
+- Redirect slack permalink format to archive
+- Slack unfurls
+- Cache avatars?
+- Top lists/metrics
+- Filter by reactions
+- Sort search results by date or relevance
+- logged out page
+- about page
+- donate link
+- hide login button
+
+<!-- # Hugo Data to Pages
 
 Allows for generating pages (or any archetypes) from data (json/yaml) on [Hugo](https://github.com/gohugoio/hugo).
 Related to issues [#140](https://github.com/gohugoio/hugo/issues/140) and [5074](https://github.com/gohugoio/hugo/issues/5074).
@@ -43,4 +77,4 @@ Flags:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details -->

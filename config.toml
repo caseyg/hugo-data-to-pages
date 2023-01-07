@@ -1,0 +1,10 @@
+languageCode = "en-us"
+title = "ResearchOps Community Slack Archive"
+
+[taxonomies]
+  channel = 'channel'
+
+[permalinks]
+  channel = "/c/:title/"
+  "/" = "/m/:filename/"
+

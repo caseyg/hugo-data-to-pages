@@ -1,0 +1,59 @@
+<div 
+    class="row message" 
+    data-pagefind-body
+    data-pagefind-meta="Reply Count:{{ .Params.reply_count | default "0" }}">
+    <div class="col">
+        <div class="row media mb-2 {{ with .Params.subtype }} text-muted{{ end }}" id="{{ .Params.ts }}">
+            <div class="col-sm-1">
+                {{ with .Params.user_profile }}
+                    <img 
+                    loading="lazy" 
+                    class="img-fluid rounded" 
+                    onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name={{.real_name}}';" 
+                    src="{{.image_72}}" 
+                    class="mr-3" 
+                    alt="{{ .real_name }}" 
+                    data-pagefind-meta="image[src]">
+                {{ end }}
+            </div>
+            <div class="col">
+                <div class="media-body">
+                    {{ with .Params.user_profile }}
+                        <strong class="my-0" data-pagefind-filter="user">{{ .real_name }}</strong> 
+                    {{ end }}
+                        <time 
+                        data-pagefind-filter="year[data-year]" 
+                        data-year="{{ dateFormat "2006" .Date }}">
+                            <small>
+                                <a 
+                                href="{{ .Permalink }}" 
+                                class="text-muted" 
+                                data-pagefind-meta="date">
+                                    {{ time.Format ":date_medium" .Params.date }} 
+                                    {{ time.Format ":time_short" .Params.date }}
+                                </a> 
+                                <a>
+                                    <span 
+                                    class="channel" 
+                                    data-pagefind-meta="channel" 
+                                    data-pagefind-filter="channel">
+                                        #{{ .Params.channel }}
+                                    </span>
+                                </p>
+                            </small> 
+                        </time>
+
+                    <p>{{ .Params.text_processed | safeHTML }}</p>
+
+                    <div class="reactions">
+                        {{ range .Params.reactions }}
+                            <span class="badge badge-pill badge-light"> {{.name}}: {{.count}}</span>
+                        {{ end }}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

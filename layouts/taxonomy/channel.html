@@ -1,0 +1,31 @@
+{{ define "main" }}
+    <main class="main container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center"></h1>
+            </div>
+        </div>
+
+        <div class="p-5 mb-4 bg-primary text-light rounded-3 text-center">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">#{{ .Title }}</h1>
+                <p class="col fs-4">{{ range where $.Site.Data.channels "name" "eq" .Title }}{{ .purpose.value | markdownify | emojify }}{{ end }}</p>
+                <div>
+                    <a href="" class="btn btn btn-text text-light">{{ range where $.Site.Data.channels "name" "eq" .Title }}{{ .topic.value | markdownify | emojify }}{{ end }}</a>
+                </div>
+            </div>
+        </div>        
+
+        {{ range (.Pages.GroupByParamDate "date" ":date_medium").Reverse }}
+            <div class="row">
+                <div class="col">
+                    <hr>
+                    <h2 class="text-center">{{ .Key }}</h2>
+                </div>
+            </div>
+            {{ range .Pages.ByDate }}
+                {{ partial "message.html" . }}
+            {{ end }}
+        {{ end }}
+    </main>
+{{ end }}
